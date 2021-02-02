@@ -14,6 +14,7 @@ const Form = ({ inputText, setInputText, todos, setTodos, setStatus }) => {
             {
                 text: inputText,
                 completed: false,
+                fall:false,
                 id: parseInt(Math.random() * 1000)
             }
         ]);

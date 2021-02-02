@@ -3,7 +3,20 @@ import React from 'react';
 const Todo = ({ text, todo, todos, setTodos }) => {
 
     const deleteHandler = () => {
-        setTodos(todos.filter((el) => el.id !== todo.id));
+        setTodos(todos.map(item => {
+            if (item.id === todo.id) {
+                return {
+                    ...item,
+                    fall: true
+                }
+            }
+            return item;
+        }));
+
+        setTimeout(() => {
+            setTodos(todos.filter((el) => el.id !== todo.id));
+        }, 300);
+
     }
 
     const completeHandler = () => {
@@ -19,7 +32,7 @@ const Todo = ({ text, todo, todos, setTodos }) => {
     }
 
     return (
-        <div className="todo">
+        <div className={`todo ${todo.fall ? "fall" : ""}`}>
             <li
                 className={`todoItem ${todo.completed ? "completed" : ""}`}
             >
